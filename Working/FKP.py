@@ -3,6 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from math import gamma
 from collections import Counter
+import os
 
 # ============================================================
 # 1️⃣ Fractional Components (GL Kernel + Adaptive Alpha)
@@ -157,7 +158,7 @@ def load_dataset(path):
 
 if __name__ == "__main__":
 
-    dataset_path = "Dataset/cluster_3_mean.csv"
+    dataset_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "Dataset", "cluster_3_mean.csv"))
 
     t, x, y, dt = load_dataset(dataset_path)
 

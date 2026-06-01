@@ -10,8 +10,9 @@ from torch_geometric.data import Data
 import torch.nn.functional as F
 from torch_geometric.nn import GCNConv
 
-# Define the path where all user datasets are stored
-data_directory = '/Users/mohanakrishnan/Mohan/Fractional Calculus/DataSet'
+# Define the path where all user datasets are stored (workspace-relative)
+# This resolves to the top-level `DataSet/` folder next to `Working/`.
+data_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'DataSet'))
 
 # Initialize a list to store the preprocessed data for each user
 preprocessed_data = []
@@ -97,8 +98,8 @@ class GCN(torch.nn.Module):
 
 # Function to create graph data for GCN
 def create_graph_data(nodes, edge_index):
-    x = torch.tensor(nodes, dtype=torch.float)
-    edge_index = torch.tensor(edge_index, dtype=torch.long)
+    x = torch.tensor(np.asarray(nodes), dtype=torch.float)
+    edge_index = torch.tensor(np.asarray(edge_index).T, dtype=torch.long)
     return Data(x=x, edge_index=edge_index)
 
 # Example graph construction (assuming gaze data with 2D features as nodes)
@@ -129,7 +130,7 @@ for cluster, players_data in clustered_data.items():
     # Here you would integrate GCN-based clustering (optional)
 
     # Save the final output for each cluster
-    final_df = pd.DataFrame(nodes, columns=['mean_x', 'mean_y', 'var_x', 'var_y'])
+    final_df = pd.DataFrame(nodes, columns=['mean_x', 'mean_y'])
     final_df['cluster'] = cluster
     final_df.to_csv(f'cluster_{cluster}_final.csv', index=False)
 

@@ -9,8 +9,29 @@ import torch
 import torch.nn as nn
 from torch.utils.data import Dataset, DataLoader
 from math import gamma
+from pathlib import Path
 
 torch.set_default_dtype(torch.float32)
+
+
+def resolve_csv_path(csv_path):
+    path = Path(csv_path)
+    if path.is_file():
+        return path
+
+    if not path.is_absolute():
+        script_dir = Path(__file__).resolve().parent
+        candidates = [
+            script_dir / path,
+            script_dir.parent / path,
+            script_dir.parent.parent / path,
+            Path.cwd() / path,
+        ]
+        for candidate in candidates:
+            if candidate.is_file():
+                return candidate
+
+    raise FileNotFoundError(f"Could not find CSV file: {csv_path}")
 
 # ============================================================
 # 1. FRACTIONAL CALCULUS
@@ -68,6 +89,7 @@ class GazeFCDataset(Dataset):
 
         self.seq_len = seq_len
         self.future_steps = future_steps
+        csv_path = resolve_csv_path(csv_path)
 
         # ----------------------------------------------------
         # Load + clean
@@ -293,4 +315,4 @@ def train_and_evaluate(csv_path):
 # ============================================================
 
 if __name__ == "__main__":
-    train_and_evaluate("D:\\Fractional Calculus\\Working\\Dataset\\cluster_0_mean.csv")
+    train_and_evaluate(Path(__file__).resolve().parent.parent / "Dataset" / "cluster_0_mean.csv")

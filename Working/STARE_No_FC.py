@@ -182,7 +182,9 @@ def save_plot(path):
 
 if __name__ == "__main__":
 
-    CSV_PATH = "Dataset/cluster_0_mean.csv"
+    base_dir = os.path.dirname(__file__)
+    CSV_PATH = os.path.abspath(os.path.join(base_dir, "Dataset", "cluster_0_mean.csv"))
+    results_dir = os.path.abspath(os.path.join(base_dir, "results"))
     SEQ_LEN = 30
     EPOCHS = 10
     BATCH = 64
@@ -214,8 +216,8 @@ if __name__ == "__main__":
     print(f"Max Error    : {results['error'].max():.4f}")
 
     # Save table
-    os.makedirs("results/tables", exist_ok=True)
-    results.to_csv("results/tables/stare_no_fc_actual_vs_predicted.csv", index=False)
+    os.makedirs(os.path.join(results_dir, "tables"), exist_ok=True)
+    results.to_csv(os.path.join(results_dir, "tables", "stare_no_fc_actual_vs_predicted.csv"), index=False)
 
     # Plot trajectory (sample)
     plt.figure(figsize=(6,6))
@@ -224,6 +226,6 @@ if __name__ == "__main__":
     plt.legend()
     plt.title("STARE (No FC): Actual vs Predicted Trajectory")
 
-    save_plot("results/plots/trajectories/stare_no_fc_trajectory.png")
+    save_plot(os.path.join(results_dir, "plots", "trajectories", "stare_no_fc_trajectory.png"))
 
     print("\n✅ Results saved to results/")

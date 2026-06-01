@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 from math import gamma
+import os
 
 # =========================
 # Fractional Calculus (GL)
@@ -217,7 +218,7 @@ def build_features(csv_path,
 
 
 if __name__ == "__main__":
-    csv_path = "Dataset\cluster_0_mean.csv"  # change if needed
+    csv_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "Dataset", "cluster_0_mean.csv"))
 
     features = build_features(
         csv_path,

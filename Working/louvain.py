@@ -5,8 +5,9 @@ from sklearn.preprocessing import StandardScaler
 import networkx as nx
 import community as community_louvain
 
-# Define the path where all user datasets are stored
-data_directory = '/Users/mohanakrishnan/Mohan/Fractional Calculus/DataSet'
+# Define the path where all user datasets are stored (workspace-relative)
+# This resolves to the top-level `DataSet/` folder next to `Working/`.
+data_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'DataSet'))
 
 # Initialize a dictionary to store players' data by clusters
 clustered_data = {}

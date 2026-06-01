@@ -114,7 +114,12 @@ def save_plot(path):
 
 if __name__ == "__main__":
 
-    dataset_path = "Dataset/cluster_3_mean.csv"   # safer path style
+    # Resolve workspace-relative Dataset and results folders (next to this script)
+    base_dir = os.path.dirname(__file__)
+    base_data_dir = os.path.abspath(os.path.join(base_dir, 'Dataset'))
+    base_results_dir = os.path.abspath(os.path.join(base_dir, 'results'))
+
+    dataset_path = os.path.join(base_data_dir, 'cluster_3_mean.csv')
 
     t, x, y, dt = load_dataset(dataset_path)
 
@@ -149,7 +154,7 @@ if __name__ == "__main__":
     plt.xlabel("X")
     plt.ylabel("Y")
 
-    save_plot("results/plots/trajectories/adaptive_fc_trajectory.png")
+    save_plot(os.path.join(base_results_dir, 'plots', 'trajectories', 'adaptive_fc_trajectory.png'))
 
     # ================= ALPHA PLOT =================
     plt.figure(figsize=(10,4))
@@ -158,6 +163,6 @@ if __name__ == "__main__":
     plt.legend()
     plt.title("Adaptive Fractional Order α Over Time")
 
-    save_plot("results/plots/alpha/adaptive_fc_alpha.png")
+    save_plot(os.path.join(base_results_dir, 'plots', 'alpha', 'adaptive_fc_alpha.png'))
 
     print("✅ Plots saved in results/plots/")

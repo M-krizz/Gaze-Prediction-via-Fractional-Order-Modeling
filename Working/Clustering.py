@@ -5,8 +5,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import SpectralClustering
 from sklearn.metrics.pairwise import euclidean_distances
 
-# Define the path where all user datasets are stored
-data_directory = '../DataSet'
+# Define the path where all user datasets are stored (workspace-relative)
+# This resolves to the top-level `DataSet/` folder next to `Working/`.
+data_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'DataSet'))
 
 # Initialize a list to store the preprocessed data for each user
 preprocessed_data = []
