@@ -39,6 +39,8 @@ The raw data and source code are the authoritative inputs. CSVs, plots, and chec
 
 Non-destructive, audited datasets are available under [`preprocessed files/`](preprocessed%20files/). See [`PREPROCESSING_REPORT.md`](preprocessed%20files/PREPROCESSING_REPORT.md) for every dataset-specific decision, change summary, validation result, and the correct downstream use. The complete collection can be regenerated with `preprocessed files/preprocess_datasets.py`; original raw and historical artifact files are never overwritten.
 
+Equal-length copies of the 33 sample-level processed datasets are available under [`trucate_files/`](trucate_files/). Every included CSV has 6,284 rows. The scope, exclusions, validation, and reproducible procedure are documented in [`TRUNCATION_REPORT.md`](trucate_files/TRUNCATION_REPORT.md).
+
 ## End-to-end data flow
 
 ```mermaid
