@@ -1,0 +1,35 @@
+source_file,role,rows,columns,missing_cells,duplicate_rows,action,duplicate_timestamps,timestamp_decreases
+DataSet/P01_PLAY.csv,raw recording,7695,6,0,0,validate and preserve values,0,0
+DataSet/P02_PLAY.csv,raw recording,9036,6,0,0,validate and preserve values,0,0
+DataSet/P03_PLAY.csv,raw recording,8545,6,0,0,validate and preserve values,0,0
+DataSet/P04_PLAY.csv,raw recording,8557,6,0,0,validate and preserve values,0,0
+DataSet/P05_PLAY.csv,raw recording,9180,6,0,0,validate and preserve values,0,0
+DataSet/P06_PLAY.csv,raw recording,8291,6,0,0,validate and preserve values,0,0
+DataSet/P07_PLAY.csv,raw recording,8968,6,0,0,validate and preserve values,0,0
+DataSet/P08_PLAY.csv,raw recording,8926,6,0,0,validate and preserve values,0,0
+DataSet/P09_PLAY.csv,raw recording,8952,6,0,0,validate and preserve values,0,0
+DataSet/P10_PLAY.csv,raw recording,7492,6,0,0,validate and preserve values,0,0
+DataSet/P11_PLAY.csv,raw recording,8794,6,0,0,validate and preserve values,0,0
+DataSet/P12_READ.csv,raw recording,8666,6,0,0,validate and preserve values,0,0
+DataSet/P13_PLAY.csv,raw recording,9859,6,0,0,validate and preserve values,0,0
+DataSet/P14_PLAY.csv,raw recording,8976,6,0,0,validate and preserve values,0,0
+DataSet/P15_PLAY.csv,raw recording,8611,6,0,0,validate and preserve values,0,0
+DataSet/P16_PLAY.csv,raw recording,9936,6,0,0,validate and preserve values,0,0
+DataSet/P17_PLAY.csv,raw recording,7345,6,0,0,validate and preserve values,0,0
+DataSet/P18_PLAY.csv,raw recording,6314,6,0,0,validate and preserve values,0,0
+DataSet/P19_PLAY.csv,raw recording,8012,6,0,0,validate and preserve values,0,0
+DataSet/P20_PLAY.csv,raw recording,10267,6,0,0,validate and preserve values,0,0
+DataSet/P21_PLAY.csv,raw recording,8845,6,0,0,validate and preserve values,0,0
+DataSet/P22_PLAY.csv,raw recording,10016,6,0,0,validate and preserve values,0,0
+DataSet/P23_PLAY.csv,raw recording,9054,6,0,0,validate and preserve values,0,0
+DataSet/P24_PLAY.csv,raw recording,9277,6,0,0,validate and preserve values,0,0
+Working/Dataset/cluster_0_mean.csv,derived cluster trajectory,9180,5,8598,2865,replace with common-grid aggregation,2865,0
+Working/Dataset/cluster_1_mean.csv,derived cluster trajectory,7492,5,0,0,replace with common-grid aggregation,0,0
+Working/Dataset/cluster_2_mean.csv,derived cluster trajectory,8926,5,4743,1580,replace with common-grid aggregation,1580,0
+Working/Dataset/cluster_3_mean.csv,derived cluster trajectory,8611,5,0,0,replace with common-grid aggregation,0,0
+Working/clustered_players_based_on_gaze.csv,derived metadata/features,24,6,0,0,validate or regenerate downstream artifact,,
+Working/gaze_features.csv,derived metadata/features,9179,29,0,0,validate or regenerate downstream artifact,,
+Working/louvain_community_partition.csv,derived metadata/features,24,2,0,0,validate or regenerate downstream artifact,,
+Working/results/tables/adaptive_fc_actual_vs_predicted.csv,historical evaluation output,9369,6,0,0,validate error only,,
+Working/results/tables/fkf_actual_vs_predicted.csv,historical evaluation output,6745,7,1,0,validate error only,,
+Working/results/tables/stare_no_fc_actual_vs_predicted.csv,historical evaluation output,6284,5,0,0,validate error only,,
