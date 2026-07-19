@@ -35,6 +35,10 @@ Fractional-order models are useful here because a Grünwald–Letnikov (GL) deri
 
 The raw data and source code are the authoritative inputs. CSVs, plots, and checkpoints elsewhere in the repository are experiment artifacts and may have been produced by different runs.
 
+## Preprocessed datasets
+
+Non-destructive, audited datasets are available under [`preprocessed files/`](preprocessed%20files/). See [`PREPROCESSING_REPORT.md`](preprocessed%20files/PREPROCESSING_REPORT.md) for every dataset-specific decision, change summary, validation result, and the correct downstream use. The complete collection can be regenerated with `preprocessed files/preprocess_datasets.py`; original raw and historical artifact files are never overwritten.
+
 ## End-to-end data flow
 
 ```mermaid

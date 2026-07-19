@@ -1,0 +1,25 @@
+file,input_rows,output_rows,removed_duplicate_rows,missing_cells_after,timestamp_start,timestamp_end,median_positive_dt,x_min,x_max,y_min,y_max,transformation
+P01_PLAY.csv,7695,7695,0,0,0.0,299968.0,35.0,-1530.0,1893.0,-1014.0,1344.0,validated types/categories/order; no data values changed
+P02_PLAY.csv,9036,9036,0,0,0.0,299983.0,31.0,25.0,1923.0,26.0,1406.0,validated types/categories/order; no data values changed
+P03_PLAY.csv,8545,8545,0,0,0.0,299989.0,34.0,-72.0,1942.0,-2.0,1302.0,validated types/categories/order; no data values changed
+P04_PLAY.csv,8557,8557,0,0,0.0,299986.0,34.0,-141.0,1655.0,68.0,1293.0,validated types/categories/order; no data values changed
+P05_PLAY.csv,9180,9180,0,0,0.0,299978.0,32.0,4.0,1962.0,-79.0,1163.0,validated types/categories/order; no data values changed
+P06_PLAY.csv,8291,8291,0,0,0.0,298639.0,34.0,-1218.0,1924.0,-94.0,1270.0,validated types/categories/order; no data values changed
+P07_PLAY.csv,8968,8968,0,0,0.0,299978.0,32.0,9.0,1748.0,-17.0,1634.0,validated types/categories/order; no data values changed
+P08_PLAY.csv,8926,8926,0,0,0.0,299975.0,32.0,54.0,1943.0,-31.0,1154.0,validated types/categories/order; no data values changed
+P09_PLAY.csv,8952,8952,0,0,0.0,299974.0,32.0,-344.0,1744.0,52.0,1246.0,validated types/categories/order; no data values changed
+P10_PLAY.csv,7492,7492,0,0,0.0,285149.0,30.0,-131.0,2052.0,-462.0,1767.0,validated types/categories/order; no data values changed
+P11_PLAY.csv,8794,8794,0,0,0.0,299980.0,33.0,-132.0,2348.0,-546.0,1437.0,validated types/categories/order; no data values changed
+P12_READ.csv,8666,8666,0,0,0.0,299985.0,31.0,-493.0,2455.0,-359.0,1325.0,validated types/categories/order; no data values changed
+P13_PLAY.csv,9859,9859,0,0,0.0,299983.0,29.0,-119.0,2236.0,-247.0,1498.0,validated types/categories/order; no data values changed
+P14_PLAY.csv,8976,8976,0,0,0.0,299691.0,32.0,59.0,1630.0,85.0,1085.0,validated types/categories/order; no data values changed
+P15_PLAY.csv,8611,8611,0,0,0.0,299984.0,33.0,-1661.0,1860.0,19.0,1433.0,validated types/categories/order; no data values changed
+P16_PLAY.csv,9936,9936,0,0,0.0,299985.0,28.0,-844.0,3574.0,-203.0,1421.0,validated types/categories/order; no data values changed
+P17_PLAY.csv,7345,7345,0,0,0.0,299980.0,31.0,-81.0,3499.0,-162.0,1387.0,validated types/categories/order; no data values changed
+P18_PLAY.csv,6314,6314,0,0,0.0,297388.0,35.0,-54.0,1625.0,66.0,1531.0,validated types/categories/order; no data values changed
+P19_PLAY.csv,8012,8012,0,0,0.0,299814.0,35.0,63.0,2021.0,-264.0,1460.0,validated types/categories/order; no data values changed
+P20_PLAY.csv,10267,10267,0,0,0.0,299983.0,27.0,-1409.0,2041.0,-784.0,1917.0,validated types/categories/order; no data values changed
+P21_PLAY.csv,8845,8845,0,0,0.0,299977.0,32.0,-78.0,1755.0,-34.0,1174.0,validated types/categories/order; no data values changed
+P22_PLAY.csv,10016,10016,0,0,0.0,299975.0,28.0,5.0,1996.0,-313.0,1464.0,validated types/categories/order; no data values changed
+P23_PLAY.csv,9054,9054,0,0,0.0,300000.0,32.0,-311.0,2056.0,-153.0,1424.0,validated types/categories/order; no data values changed
+P24_PLAY.csv,9277,9277,0,0,0.0,299994.0,30.0,-132.0,2350.0,-845.0,1566.0,validated types/categories/order; no data values changed
