@@ -315,4 +315,9 @@ def train_and_evaluate(csv_path):
 # ============================================================
 
 if __name__ == "__main__":
-    train_and_evaluate(Path(__file__).resolve().parent.parent / "Dataset" / "cluster_0_mean.csv")
+    train_and_evaluate(
+        Path(__file__).resolve().parents[2]
+        / "trucate_files"
+        / "cluster_means"
+        / "cluster_0_mean_processed.csv"
+    )

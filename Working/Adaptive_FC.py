@@ -114,12 +114,14 @@ def save_plot(path):
 
 if __name__ == "__main__":
 
-    # Resolve workspace-relative Dataset and results folders (next to this script)
+    # Resolve the truncated input dataset and the existing results folder.
     base_dir = os.path.dirname(__file__)
-    base_data_dir = os.path.abspath(os.path.join(base_dir, 'Dataset'))
+    base_data_dir = os.path.abspath(
+        os.path.join(base_dir, '..', 'trucate_files', 'cluster_means')
+    )
     base_results_dir = os.path.abspath(os.path.join(base_dir, 'results'))
 
-    dataset_path = os.path.join(base_data_dir, 'cluster_3_mean.csv')
+    dataset_path = os.path.join(base_data_dir, 'cluster_3_mean_processed.csv')
 
     t, x, y, dt = load_dataset(dataset_path)
 

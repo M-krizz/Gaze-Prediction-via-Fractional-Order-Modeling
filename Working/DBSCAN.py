@@ -5,9 +5,10 @@ from sklearn.cluster import KMeans
 from sklearn.metrics.pairwise import euclidean_distances
 import numpy as np
 
-# Define the path where all user datasets are stored (workspace-relative)
-# This resolves to the top-level `DataSet/` folder next to `Working/`.
-data_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'DataSet'))
+# Truncated, preprocessed participant recordings.
+data_directory = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), '..', 'trucate_files', 'raw')
+)
 
 # Initialize a list to store the preprocessed data for each user
 preprocessed_data = []

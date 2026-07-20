@@ -158,7 +158,12 @@ def load_dataset(path):
 
 if __name__ == "__main__":
 
-    dataset_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "Dataset", "cluster_3_mean.csv"))
+    dataset_path = os.path.abspath(
+        os.path.join(
+            os.path.dirname(__file__), "..", "trucate_files", "cluster_means",
+            "cluster_3_mean_processed.csv"
+        )
+    )
 
     t, x, y, dt = load_dataset(dataset_path)
 

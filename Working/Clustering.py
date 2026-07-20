@@ -5,9 +5,10 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.cluster import SpectralClustering
 from sklearn.metrics.pairwise import euclidean_distances
 
-# Define the path where all user datasets are stored (workspace-relative)
-# This resolves to the top-level `DataSet/` folder next to `Working/`.
-data_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'DataSet'))
+# Truncated, preprocessed participant recordings.
+data_directory = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), '..', 'trucate_files', 'raw')
+)
 
 # Initialize a list to store the preprocessed data for each user
 preprocessed_data = []
@@ -43,9 +44,45 @@ features_df['participant'] = user_names
 # Calculate pairwise Euclidean distances between users (gaze behavior similarity)
 similarity_matrix = euclidean_distances(features_df[['mean_x', 'mean_y', 'var_x', 'var_y']])
 
-# Perform Spectral Clustering on the similarity matrix
-spectral = SpectralClustering(n_clusters=4, affinity='precomputed', n_init=100)
-clusters = spectral.fit_predict(similarity_matrix)
+from sklearn.metrics import silhouette_score
+
+best_k = None
+best_score = -1
+best_clusters = None
+
+print("Evaluating different numbers of clusters:\n")
+
+# Number of clusters from 2 to 10
+# (Silhouette Score cannot be computed for k=1)
+for k in range(2, 11):
+    spectral = SpectralClustering(
+        n_clusters=k,
+        affinity='precomputed',
+        n_init=100,
+        random_state=42
+    )
+
+    clusters = spectral.fit_predict(similarity_matrix)
+
+    score = silhouette_score(
+        features_df[['mean_x', 'mean_y', 'var_x', 'var_y']],
+        clusters
+    )
+
+    print(f"Clusters = {k:2d} | Silhouette Score = {score:.4f}")
+
+    if score > best_score:
+        best_score = score
+        best_k = k
+        best_clusters = clusters
+
+print("\n--------------------------------")
+print(f"Best Number of Clusters : {best_k}")
+print(f"Best Silhouette Score   : {best_score:.4f}")
+print("--------------------------------\n")
+
+# Use the best clustering for the rest of the code
+clusters = best_clusters
 
 # Add the cluster labels to the DataFrame
 features_df['cluster'] = clusters

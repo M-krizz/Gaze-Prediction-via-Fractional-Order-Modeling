@@ -183,7 +183,12 @@ def save_plot(path):
 if __name__ == "__main__":
 
     base_dir = os.path.dirname(__file__)
-    CSV_PATH = os.path.abspath(os.path.join(base_dir, "Dataset", "cluster_0_mean.csv"))
+    CSV_PATH = os.path.abspath(
+        os.path.join(
+            base_dir, "..", "trucate_files", "cluster_means",
+            "cluster_0_mean_processed.csv"
+        )
+    )
     results_dir = os.path.abspath(os.path.join(base_dir, "results"))
     SEQ_LEN = 30
     EPOCHS = 10

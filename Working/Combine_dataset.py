@@ -2,8 +2,10 @@ import pandas as pd
 import glob
 import os
 
-# Path where all CSVs are stored
-path = "DataSet"
+# Truncated, preprocessed participant CSVs (resolved independently of launch cwd)
+path = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), "..", "trucate_files", "raw")
+)
 
 # Get all CSV file paths
 all_files = glob.glob(os.path.join(path, "*.csv"))
