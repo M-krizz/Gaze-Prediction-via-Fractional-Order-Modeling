@@ -1,10 +1,12 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
+from pathlib import Path
 
 # ====== Load your dataset ======
-# Replace with your actual dataset path
-df = pd.read_csv("DataSet/P01_PLAY.csv")
+# Truncated, preprocessed P01 recording (resolved independently of launch cwd)
+dataset_path = Path(__file__).resolve().parent.parent / "trucate_files" / "raw" / "P01_PLAY.csv"
+df = pd.read_csv(dataset_path)
 
 # Ensure timestamp is sorted
 df = df.sort_values("timestamp").reset_index(drop=True)

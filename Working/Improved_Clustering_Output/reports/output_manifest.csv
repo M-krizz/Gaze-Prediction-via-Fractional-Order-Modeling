@@ -1,0 +1,6 @@
+output_type,file,rows,columns,cluster,members,missing_cells
+participant_assignments_and_features,clustered_players_based_on_gaze.csv,24,39,,24,0
+cluster_mean_trajectory,cluster_0_mean.csv,6437,5,0,8,0
+cluster_mean_trajectory,cluster_1_mean.csv,5755,5,1,14,0
+cluster_mean_trajectory,cluster_2_mean.csv,7704,5,2,1,0
+cluster_mean_trajectory,cluster_3_mean.csv,8399,5,3,1,0

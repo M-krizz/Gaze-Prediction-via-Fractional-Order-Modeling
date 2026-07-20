@@ -39,6 +39,8 @@ The raw data and source code are the authoritative inputs. CSVs, plots, and chec
 
 Non-destructive, audited datasets are available under [`preprocessed files/`](preprocessed%20files/). See [`PREPROCESSING_REPORT.md`](preprocessed%20files/PREPROCESSING_REPORT.md) for every dataset-specific decision, change summary, validation result, and the correct downstream use. The complete collection can be regenerated with `preprocessed files/preprocess_datasets.py`; original raw and historical artifact files are never overwritten.
 
+Equal-length copies of the 33 sample-level processed datasets are available under [`trucate_files/`](trucate_files/). Every included CSV has 6,284 rows. The scope, exclusions, validation, and reproducible procedure are documented in [`TRUNCATION_REPORT.md`](trucate_files/TRUNCATION_REPORT.md).
+
 ## End-to-end data flow
 
 ```mermaid
@@ -130,11 +132,11 @@ These numbers are not directly comparable without confirming the source dataset,
 
 #### `Working/Combine_dataset.py`
 
-Globs `DataSet/*.csv`, concatenates every file with Pandas, and writes `combined_dataset.csv`. Both paths are relative to the current working directory, so run it from the repository root. File ordering follows the filesystem/glob result and is not explicitly sorted.
+Globs `trucate_files/raw/*.csv`, concatenates every truncated participant file with Pandas, and writes `combined_dataset.csv`. The input is resolved from the script location; the output remains relative to the current working directory. File ordering follows the filesystem/glob result and is not explicitly sorted.
 
 #### `Working/P01_plot.py`
 
-Loads `DataSet/P01_PLAY.csv`, sorts it by timestamp, and displays two interactive figures: a timestamp-colored gaze trajectory and a Seaborn KDE density heatmap. Both invert the y-axis to resemble screen coordinates. The script saves no image and must also be launched from the repository root.
+Loads `trucate_files/raw/P01_PLAY.csv`, sorts it by timestamp, and displays two interactive figures: a timestamp-colored gaze trajectory and a Seaborn KDE density heatmap. Both invert the y-axis to resemble screen coordinates. The script saves no image.
 
 ### Participant grouping
 
@@ -145,6 +147,10 @@ For each participant, the script standardizes `x` and `y` independently, then re
 Important interpretation issue: a precomputed spectral-clustering affinity should represent similarity, but this script passes distance directly. In addition, per-participant standardization forces the means toward 0 and variances toward 1, making the four summary features nearly identical across participants. There is no fixed random seed, so assignments can vary.
 
 The current saved spectral assignment is heavily imbalanced: cluster sizes are 17, 1, 3, and 3.
+
+#### `Working/Improved_Clustering.py`
+
+This modular replacement leaves `Clustering.py` unchanged. It extracts 37 coordinate-distribution, scanpath, speed, timing, covariance, fixation, and spatial-entropy features per participant; standardizes the resulting feature matrix across participants; and constructs a Gaussian RBF affinity using a median-distance bandwidth. It evaluates cluster counts 2 through 10 with Silhouette, Davies-Bouldin, and Calinski-Harabasz scores, selects the result using equal-weight metric-rank aggregation, and uses a fixed random seed. Cluster means are interpolated onto a shared uniform timestamp grid before averaging, preventing missing values from unequal time alignment. Outputs are written by default to `Working/Improved_Clustering_Output/`, with legacy-compatible CSVs at the top level and structured metrics, membership, cluster summary, output manifest, and JSON run summary under `reports/`.
 
 #### `Working/DBSCAN.py`
 
@@ -166,7 +172,7 @@ Repeats the spectral grouping, creates a fully connected graph inside each clust
 
 This file does not import or train a Random Forest. `build_features()` cleans and sorts a gaze CSV, converts likely millisecond timestamps to seconds, derives kinematics, maps coordinates to an 8-by-6 ROI grid, detects fixations with an I-VT speed threshold of 80 px/s, computes rolling statistics over 10 samples, and adds fixed-order GL derivatives (`alpha=0.8`, memory `r=20`). It creates one-step-ahead targets and drops the final targetless row.
 
-The default input is `Working/Dataset/cluster_0_mean.csv`, but the default output `gaze_features.csv` is relative to the launch directory.
+The default input is `trucate_files/cluster_means/cluster_0_mean_processed.csv`, while the default output `gaze_features.csv` remains relative to the launch directory.
 
 ### Fractional-order predictors
 
@@ -181,7 +187,7 @@ Only the most recent `r=20` samples are used, so these are finite-memory GL-styl
 
 #### `Working/Adaptive_FC.py`
 
-Loads `cluster_3_mean.csv`, removes missing and duplicate timestamps, estimates a dominant positive time step, and linearly resamples `x` and `y` onto a uniform grid. At every eligible time step, golden-section search selects `alpha` in `[0, 1]` by minimizing error against the actual next sample, separately for x and y. It saves trajectory and alpha plots.
+Loads `trucate_files/cluster_means/cluster_3_mean_processed.csv`, removes missing and duplicate timestamps, estimates a dominant positive time step, and linearly resamples `x` and `y` onto a uniform grid. At every eligible time step, golden-section search selects `alpha` in `[0, 1]` by minimizing error against the actual next sample, separately for x and y. It saves trajectory and alpha plots.
 
 Because the next ground-truth sample is used to optimize `alpha` for that same prediction, the reported score is an oracle/in-sample fit, not a deployable out-of-sample forecast.
 
@@ -229,12 +235,15 @@ python -m pip install torch-geometric
 
 Run commands from the repository root unless a note says otherwise.
 
+All executable experiment loaders under `Working/` now resolve their inputs from `trucate_files/`: participant-level utilities use `trucate_files/raw/`, cluster-0 models use the processed truncated cluster 0 mean, and the fractional baselines use the processed truncated cluster 3 mean.
+
 ```bash
 # Optional unified raw CSV (writes ./combined_dataset.csv)
 python Working/Combine_dataset.py
 
 # Participant grouping (writes outputs to the current directory)
 python Working/Clustering.py
+python Working/Improved_Clustering.py
 python Working/DBSCAN.py
 python Working/louvain.py
 python Working/GCN.py

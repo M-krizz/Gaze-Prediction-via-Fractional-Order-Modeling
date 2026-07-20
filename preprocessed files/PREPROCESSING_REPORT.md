@@ -235,7 +235,7 @@ Use the processed files as follows:
 - Adaptive FC, FKF, STARE, and LSTM experiments: select the desired `cluster_means/cluster_<id>_mean_processed.csv`.
 - Result analysis only: `results/*_validated.csv`.
 
-The existing scripts hard-code `Working/Dataset/cluster_<id>_mean.csv`. To preserve originals, either pass a processed path where the function supports it, or update a copied/configurable script to point at `preprocessed files/cluster_means/`. Do not copy processed data over the raw or original derived files merely to satisfy a hard-coded path.
+The executable scripts under `Working/` were subsequently updated to use equal-length copies under `trucate_files/`. Participant-level utilities load `trucate_files/raw/`; cluster-0 feature and deep-model scripts load `trucate_files/cluster_means/cluster_0_mean_processed.csv`; Adaptive FC and FKF load the corresponding processed cluster 3 file. The non-truncated files described in this report remain the source layer for creating those equal-length copies.
 
 ## Final validation
 

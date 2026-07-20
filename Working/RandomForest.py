@@ -218,7 +218,12 @@ def build_features(csv_path,
 
 
 if __name__ == "__main__":
-    csv_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "Dataset", "cluster_0_mean.csv"))
+    csv_path = os.path.abspath(
+        os.path.join(
+            os.path.dirname(__file__), "..", "trucate_files", "cluster_means",
+            "cluster_0_mean_processed.csv"
+        )
+    )
 
     features = build_features(
         csv_path,

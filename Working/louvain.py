@@ -5,9 +5,10 @@ from sklearn.preprocessing import StandardScaler
 import networkx as nx
 import community as community_louvain
 
-# Define the path where all user datasets are stored (workspace-relative)
-# This resolves to the top-level `DataSet/` folder next to `Working/`.
-data_directory = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'DataSet'))
+# Truncated, preprocessed participant recordings.
+data_directory = os.path.abspath(
+    os.path.join(os.path.dirname(__file__), '..', 'trucate_files', 'raw')
+)
 
 # Initialize a dictionary to store players' data by clusters
 clustered_data = {}

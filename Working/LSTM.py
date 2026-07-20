@@ -306,7 +306,9 @@ class STARE_FC_LSTMHybrid(nn.Module):
 # 5. TRAINING LOOP
 ############################################################
 
-def train_model(csv_path=os.path.abspath(os.path.join(os.path.dirname(__file__), 'Dataset', 'cluster_0_mean.csv')),
+def train_model(csv_path=os.path.abspath(os.path.join(
+                    os.path.dirname(__file__), '..', 'trucate_files', 'cluster_means',
+                    'cluster_0_mean_processed.csv')),
                 seq_len=30, future_steps=5,
                 epochs=10, batch_size=32, lr=1e-4):
 
@@ -403,7 +405,9 @@ def visualize_future_prediction(model, dataset, idx=100):
 
 if __name__ == "__main__":
     model, dataset = train_model(
-        csv_path=os.path.abspath(os.path.join(os.path.dirname(__file__), 'Dataset', 'cluster_0_mean.csv')),
+        csv_path=os.path.abspath(os.path.join(
+            os.path.dirname(__file__), '..', 'trucate_files', 'cluster_means',
+            'cluster_0_mean_processed.csv')),
         seq_len=30,
         future_steps=5,
         epochs=10,
