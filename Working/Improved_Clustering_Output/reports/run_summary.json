@@ -1,0 +1,25 @@
+{
+  "input_directory": "/Users/sanjay/Documents/Project/Gaze-Prediction-via-Fractional-Order-Modeling/trucate_files/raw",
+  "output_directory": "/Users/sanjay/Documents/Project/Gaze-Prediction-via-Fractional-Order-Modeling/Working/Improved_Clustering_Output",
+  "random_seed": 42,
+  "participants": 24,
+  "gaze_features": 37,
+  "candidate_cluster_range": [
+    2,
+    10
+  ],
+  "rbf_gamma": 0.007630194232157694,
+  "selection_method": "lowest equal-weight aggregate metric rank",
+  "selected_n_clusters": 4,
+  "selected_scores": {
+    "silhouette_score": 0.2482950593742331,
+    "davies_bouldin_index": 0.9370077700512611,
+    "calinski_harabasz_score": 7.132730052749019
+  },
+  "cluster_sizes": {
+    "0": 8,
+    "1": 14,
+    "2": 1,
+    "3": 1
+  }
+}

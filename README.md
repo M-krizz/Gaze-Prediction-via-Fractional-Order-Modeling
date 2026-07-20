@@ -148,6 +148,10 @@ Important interpretation issue: a precomputed spectral-clustering affinity shoul
 
 The current saved spectral assignment is heavily imbalanced: cluster sizes are 17, 1, 3, and 3.
 
+#### `Working/Improved_Clustering.py`
+
+This modular replacement leaves `Clustering.py` unchanged. It extracts 37 coordinate-distribution, scanpath, speed, timing, covariance, fixation, and spatial-entropy features per participant; standardizes the resulting feature matrix across participants; and constructs a Gaussian RBF affinity using a median-distance bandwidth. It evaluates cluster counts 2 through 10 with Silhouette, Davies-Bouldin, and Calinski-Harabasz scores, selects the result using equal-weight metric-rank aggregation, and uses a fixed random seed. Cluster means are interpolated onto a shared uniform timestamp grid before averaging, preventing missing values from unequal time alignment. Outputs are written by default to `Working/Improved_Clustering_Output/`, with legacy-compatible CSVs at the top level and structured metrics, membership, cluster summary, output manifest, and JSON run summary under `reports/`.
+
 #### `Working/DBSCAN.py`
 
 Despite its name, this is a K-means baseline. It creates the same standardized participant summaries and Euclidean distance matrix, then runs `KMeans(n_clusters=4)` on each participant's row of distances. It writes `clustered_players_based_on_gaze.csv` but does not create cluster means. No `random_state` is set.
@@ -239,6 +243,7 @@ python Working/Combine_dataset.py
 
 # Participant grouping (writes outputs to the current directory)
 python Working/Clustering.py
+python Working/Improved_Clustering.py
 python Working/DBSCAN.py
 python Working/louvain.py
 python Working/GCN.py
